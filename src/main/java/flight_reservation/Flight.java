@@ -9,6 +9,10 @@ public class Flight {
 	LocalDateTime departureDateTime;
 	LocalDateTime arrivalDateTime;
 	
+	@SuppressWarnings("rawtypes")
+	Dictionary price = new Hashtable();
+	Plane plane;
+	
 	public Flight() {
 		// TODO Auto-generated constructor stub
 	}
