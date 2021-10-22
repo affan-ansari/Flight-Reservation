@@ -4,9 +4,16 @@ import java.util.Vector;
 
 public class Admin {
 	Vector<Customer> customers;
+	Vector<Flight> flights;
 	
-	public Admin() {
-		// TODO Auto-generated constructor stub
+	public Admin() 
+	{
+		this.customers = new Vector<Customer>();
+		this.flights = new Vector<Flight>();
+	}
+	void register_user()
+	{
+		
 	}
 
 }
