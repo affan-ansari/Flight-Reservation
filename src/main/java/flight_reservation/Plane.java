@@ -5,8 +5,11 @@ public class Plane {
 	int firstClassSeats;
 	int economyClassSeats;
 	
-	public Plane() {
-		// TODO Auto-generated constructor stub
+	public Plane(int bClassSeats, int fClassSeats, int eClassSeats)
+	{
+		this.businessClassSeats = bClassSeats;
+		this.firstClassSeats = fClassSeats;
+		this.economyClassSeats = eClassSeats;
 	}
 
 }

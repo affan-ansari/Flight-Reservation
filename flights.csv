@@ -1,0 +1,3 @@
+source,destination,dYear,dMonth,dDay,dHour,dMin,aYear,aMonth,aDay,aHour,aMin,bPrice,fPrice,ePrice,bSeats,fSeats,eSeats
+Islamabad,Karachi,2021,10,22,15,30,2021,10,22,18,0,20000,14000,8000,20,20,25
+Islamabad,Lahore,2021,10,22,12,45,2021,10,22,13,15,12000,7500,4500,20,20,25
