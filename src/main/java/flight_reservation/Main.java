@@ -26,6 +26,7 @@ public class Main {
 				break;
 			switch (option) 
 			{
+				// ADMIN MENU
 				case 1:{
 					while(true)
 					{
@@ -33,6 +34,13 @@ public class Main {
 						option = int_scanner.nextInt();
 						if(option == 0)
 							break;
+						else if(option == 1)
+						{
+							for(int i = 0; i < admin.flights.size(); i++)
+							{
+								admin.flights.get(i).printFlight();
+							}
+						}
 					}
 					break;
 				}
