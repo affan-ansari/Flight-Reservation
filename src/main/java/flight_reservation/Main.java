@@ -4,24 +4,35 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class Main {
+
 	public static void main(String[] args) 
 	{
 		Scanner int_scanner = new Scanner(System.in);
 		Admin admin = new Admin();
 		
 		try {
-			readDefaultFlights(admin);
+			readExistingFlights(admin);
+			readExistingCustomers(admin);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		int option = -1;
 		while(true)
 		{
 			printMainMenu();
-			int option = int_scanner.nextInt();
+			try { 
+				option = int_scanner.nextInt();
+			} catch (InputMismatchException e) {
+				e.printStackTrace();
+				int_scanner.nextLine();
+				continue;
+			}
 			if(option == 0)
 				break;
 			switch (option) 
@@ -31,9 +42,17 @@ public class Main {
 					while(true)
 					{
 						printAdminMenu();
-						option = int_scanner.nextInt();
+						try { 
+							option = int_scanner.nextInt();
+						} catch (InputMismatchException e) {
+							e.printStackTrace();
+							int_scanner.nextLine();
+							continue;
+						}
+						// EXIT
 						if(option == 0)
 							break;
+						// VIEW FLIGHTS
 						else if(option == 1)
 						{
 							for(int i = 0; i < admin.flights.size(); i++)
@@ -41,18 +60,46 @@ public class Main {
 								admin.flights.get(i).printFlight();
 							}
 						}
+						// ADD FLIGHT
+						else if(option == 2)
+						{
+							
+						}
+						// VIEW BOOKINGS
+						else if(option == 3)
+						{
+							
+						}
+						// REGISTER CUSTOMER
+						else if(option == 4)
+						{
+							System.out.println("REGISTRATION");
+							try{
+								admin.register_customer();
+								System.out.println("Registration Successful!");
+								
+							} catch (Exception e) {
+								e.printStackTrace();
+								int_scanner.nextLine();
+							}
+						}
+						// INVALID INPUT
+						else
+						{
+							
+						}
 					}
 					break;
 				}
 
 				default:
+					System.out.println("Invalid Option!");
 					break;
 			}
-		}
-		 
-		 
-		
+		}	 
+	int_scanner.close();
 	}
+	
 	
 	public static void printMainMenu()
 	{
@@ -81,7 +128,24 @@ public class Main {
 		System.out.println("0:\tExit");
 	}
 	
-	public static void readDefaultFlights(Admin admin) throws IOException, IndexOutOfBoundsException
+	public static void readExistingCustomers(Admin admin) throws IOException, IndexOutOfBoundsException
+	{
+		String line = "";
+		BufferedReader br = new BufferedReader(new FileReader("customers.csv"));
+		
+		while ((line = br.readLine()) != null)  
+		{
+			String[] customer_data = line.split(",");
+			String login = customer_data[0];
+			String password = customer_data[1];
+			
+			Customer customer = new Customer(login, password);
+			admin.customers.add(customer);
+		}
+		br.close();
+	}
+	
+	public static void readExistingFlights(Admin admin) throws IOException, IndexOutOfBoundsException
 	{
 		String line = "";
 		BufferedReader br = new BufferedReader(new FileReader("flights.csv"));
@@ -125,6 +189,7 @@ public class Main {
 			int id = admin.flights.size() + 1;
 			Flight flight = new Flight(id, source, dest, depDT, arrDT, bPrice, fPrice, ePrice, plane);
 			admin.flights.add(flight);
-		} 
+		}
+		br.close();
 	}
 }
