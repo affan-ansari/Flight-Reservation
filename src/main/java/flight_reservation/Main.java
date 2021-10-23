@@ -13,6 +13,7 @@ public class Main {
 	public static void main(String[] args) 
 	{
 		Scanner int_scanner = new Scanner(System.in);
+		Scanner str_scanner = new Scanner(System.in);
 		Admin admin = new Admin();
 		
 		try {
@@ -91,6 +92,52 @@ public class Main {
 					}
 					break;
 				}
+				// CUSTOMER MENU
+				case 2:{
+					System.out.print("Login: ");
+					String login = str_scanner.nextLine();
+					System.out.print("Password: ");
+					String password = str_scanner.nextLine();
+					
+					Customer customer = null;
+					try {
+						customer = admin.login_customer(login, password);
+						System.out.println("Welcome " + customer.login + "!");
+						while(true)
+						{
+							printCustomerMenu();
+							try { 
+								option = int_scanner.nextInt();
+								
+								// EXIT
+								if(option == 0)
+									break;
+								
+								// VIEW BOOKINGS
+								else if(option == 1)
+								{
+									
+								}
+
+								// BOOK FLIGHT
+								else if(option == 2)
+								{
+									
+								}
+								else
+									System.out.println("Invalid Option!");
+							} catch (InputMismatchException e) {
+								e.printStackTrace();
+								int_scanner.nextLine();
+								continue;
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					break;
+				}
 
 				default:
 					System.out.println("Invalid Option!");
@@ -98,6 +145,7 @@ public class Main {
 			}
 		}	 
 	int_scanner.close();
+	str_scanner.close();
 	}
 	
 	
@@ -112,10 +160,10 @@ public class Main {
 	public static void printAdminMenu()
 	{
 		System.out.println("Select option:");
-		System.out.println("1:\tView flights");
+		System.out.println("1:\tView flights"); // DONE
 		System.out.println("2:\tAdd Flight");
 		System.out.println("3:\tView Bookings");
-		System.out.println("4:\tRegister Customer");
+		System.out.println("4:\tRegister Customer"); // DONE
 		System.out.println("0:\tExit");
 	}
 	

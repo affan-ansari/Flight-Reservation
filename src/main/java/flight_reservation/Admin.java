@@ -14,7 +14,24 @@ public class Admin {
 		this.customers = new Vector<Customer>();
 		this.flights = new Vector<Flight>();
 	}
-
+	
+	public Customer login_customer(String login, String password) throws PasswordMismatchException, UserDoesNotExistException
+	{
+		Customer c1 = null;
+		for(int i = 0; i < this.customers.size(); i++)
+		{
+			if (this.customers.get(i).login.equals(login))
+			{
+				c1 = this.customers.get(i);
+				break;
+			}
+		}
+		if (c1 == null)
+			throw new UserDoesNotExistException("User does not exist");
+		c1.validate_password(password);
+		return c1;
+	}
+	
 	@SuppressWarnings("resource")
 	public void register_customer() throws PasswordMismatchException, DuplicateUserException, IOException
 	{

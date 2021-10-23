@@ -17,7 +17,7 @@ public class Customer {
 	
 	void validate_password(String pass) throws PasswordMismatchException
 	{
-		if(pass != this.password)
+		if(pass.equals(this.password) == false)
 			throw new PasswordMismatchException("Password do not match!");
 	}
 }
