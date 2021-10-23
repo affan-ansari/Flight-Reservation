@@ -57,14 +57,12 @@ public class Main {
 						else if(option == 1)
 						{
 							for(int i = 0; i < admin.flights.size(); i++)
-							{
 								admin.flights.get(i).printFlight();
-							}
 						}
 						// ADD FLIGHT
 						else if(option == 2)
 						{
-							
+							admin.add_flight();
 						}
 						// VIEW BOOKINGS
 						else if(option == 3)
@@ -108,29 +106,63 @@ public class Main {
 							printCustomerMenu();
 							try { 
 								option = int_scanner.nextInt();
-								
-								// EXIT
-								if(option == 0)
-									break;
-								
-								// VIEW BOOKINGS
-								else if(option == 1)
-								{
-									
-								}
-
-								// BOOK FLIGHT
-								else if(option == 2)
-								{
-									
-								}
-								else
-									System.out.println("Invalid Option!");
 							} catch (InputMismatchException e) {
 								e.printStackTrace();
 								int_scanner.nextLine();
 								continue;
 							}
+
+							// EXIT
+							if(option == 0)
+								break;
+							
+							// VIEW BOOKINGS
+							else if(option == 1)
+							{
+								
+							}
+
+							// BOOK FLIGHT
+							else if(option == 2)
+							{
+								for(int i = 0; i < admin.flights.size(); i++)
+									admin.flights.get(i).printFlight();
+								
+								System.out.println("Select Flight id you want to book!");
+								int flight_id = -1;
+								try { 
+									flight_id = int_scanner.nextInt();
+								} catch (InputMismatchException e) {
+									e.printStackTrace();
+									int_scanner.nextLine();
+									continue;
+								}
+								
+								Flight selected_flight = null;
+								try {
+									selected_flight = admin.flights.get(flight_id - 1);
+								} catch (Exception e) {
+									e.printStackTrace();
+									continue;
+								}
+								String bID = createID();
+								Booking booking = new Booking(bID);
+								booking.flight = selected_flight;
+								booking.generate_tickets();
+								
+								Invoice inv = booking.generate_invoice();
+								customer.invoices.add(inv);
+								inv.printInvoice();
+								booking.print_tickets();
+							}
+
+							// SEARCH FLIGHTS
+							else if(option == 3)
+							{
+								
+							}								
+							else
+								System.out.println("Invalid Option!");
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -239,5 +271,12 @@ public class Main {
 			admin.flights.add(flight);
 		}
 		br.close();
+	}
+
+	private static long idCounter = 1000;
+
+	public static synchronized String createID()
+	{
+	    return "B" + String.valueOf(idCounter++);
 	}
 }

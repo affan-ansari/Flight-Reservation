@@ -32,6 +32,11 @@ public class Admin {
 		return c1;
 	}
 	
+	public void add_flight()
+	{
+		
+	}
+	
 	@SuppressWarnings("resource")
 	public void register_customer() throws PasswordMismatchException, DuplicateUserException, IOException
 	{

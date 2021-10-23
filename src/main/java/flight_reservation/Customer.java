@@ -13,6 +13,7 @@ public class Customer {
 	public Customer(String login, String passowrd) {
 		this.login = login;
 		this.password = passowrd;
+		this.invoices = new Vector<Invoice>();
 	}
 	
 	void validate_password(String pass) throws PasswordMismatchException
