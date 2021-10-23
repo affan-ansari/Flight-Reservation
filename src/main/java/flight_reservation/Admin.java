@@ -32,9 +32,88 @@ public class Admin {
 		return c1;
 	}
 	
-	public void add_flight()
+	public void add_flight() throws IOException
 	{
+		Scanner sc = new Scanner(System.in);
+		FileWriter pw = new FileWriter("flights.csv", true);
 		
+		System.out.print("Source: ");
+		String source = sc.nextLine();
+		pw.append(source);
+		pw.append(",");
+		System.out.print("Destination: ");
+		String destination = sc.nextLine();
+		pw.append(destination);
+		pw.append(",");
+		System.out.print("Departure Year: ");
+		String dYear = sc.nextLine();
+		pw.append(dYear);
+		pw.append(",");
+		System.out.print("Departure Month: ");
+		String dMonth = sc.nextLine();
+		pw.append(dMonth);
+		pw.append(",");
+		System.out.print("Departure Day: ");
+		String dDay = sc.nextLine();
+		pw.append(dDay);
+		pw.append(",");
+		System.out.print("Departure Hour: ");
+		String dHour = sc.nextLine();
+		pw.append(dHour);
+		pw.append(",");
+		System.out.print("Departure Miniute: ");
+		String dMin = sc.nextLine();
+		pw.append(dMin);
+		pw.append(",");
+		
+		System.out.print("Arrival Year: ");
+		String aYear = sc.nextLine();
+		pw.append(aYear);
+		pw.append(",");
+		System.out.print("Arrival Month: ");
+		String aMonth = sc.nextLine();
+		pw.append(aMonth);
+		pw.append(",");
+		System.out.print("Arrival Day: ");
+		String aDay = sc.nextLine();
+		pw.append(aDay);
+		pw.append(",");
+		System.out.print("Arrival Hour: ");
+		String aHour = sc.nextLine();
+		pw.append(aHour);
+		pw.append(",");
+		System.out.print("Arrival Miniute: ");
+		String aMin = sc.nextLine();
+		pw.append(aMin);
+		pw.append(",");
+		
+		System.out.print("Business Price: ");
+		String bPrice = sc.nextLine();
+		pw.append(bPrice);
+		pw.append(",");
+		System.out.print("First Price: ");
+		String fPrice = sc.nextLine();
+		pw.append(fPrice);
+		pw.append(",");
+		System.out.print("Economy Price: ");
+		String ePrice = sc.nextLine();
+		pw.append(ePrice);
+		pw.append(",");
+		
+		System.out.print("Business Seats: ");
+		String bSeats = sc.nextLine();
+		pw.append(bSeats);
+		pw.append(",");
+		System.out.print("First Seats: ");
+		String fSeats = sc.nextLine();
+		pw.append(fSeats);
+		pw.append(",");
+		System.out.print("Economy Seats: ");
+		String eSeats = sc.nextLine();
+		pw.append(eSeats);
+		pw.append("\n");
+		
+		pw.close();
 	}
 	
 	@SuppressWarnings("resource")

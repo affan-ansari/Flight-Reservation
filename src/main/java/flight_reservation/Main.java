@@ -62,7 +62,12 @@ public class Main {
 						// ADD FLIGHT
 						else if(option == 2)
 						{
-							admin.add_flight();
+							try {
+								admin.add_flight();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 						// VIEW BOOKINGS
 						else if(option == 3)
